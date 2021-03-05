@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.module.js"></script>
+    <script src="controllers/task.controller.js"></script>
+    <link rel="stylesheet" href="app.css">
+    
+</head>
+<body ng-app = "app">
+    <div ng-controller = "TaskController as taskCtrl">
+
+        <form name="frm" ng-submit="taskCtrl.addTasks()">
+            <input type="text" ng-model="taskCtrl.newTask" required>
+            <button>Add</button>
+        </form><br>
+
+        <button ng-click="taskCtrl.clearCompleted()">Clear Completed</button>
+        
+        <ul>
+            <li ng-repeat="task in taskCtrl.tasks">
+                <input type="checkbox" ng-model="task.taskDone">
+                <span ng-class="{complete: task.taskDone}">{{task.title}}</span>
+            </li>
+        </ul>
+        
+    </div>
+</body>
+</html>
